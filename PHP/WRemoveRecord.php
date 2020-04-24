@@ -13,7 +13,7 @@ $result = $conn->query($query);
 if(!$result){
     echo("Failed. Please try again later.");
 }else{
-    $query = 'DELETE FROM theW WHERE CollectionTitle = "' . $record . '";';
+    $query = 'DELETE FROM theW WHERE CollectionTitle = "' . $record . '" LIMIT 1;';
     if($result = $conn->query($query) === TRUE){
         echo("Record Deleted. Redirecting to the Browse page.");
     }else{

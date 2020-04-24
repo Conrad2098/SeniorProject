@@ -157,7 +157,7 @@ function makeid() {
     var admin = isAdmin();
 
     if(admin == "admin"){
-        document.getElementById("removedit").innerHTML = "<button onclick='removeRecord()'>Remove Record</button><button onclick='editRecord()'>Edit Record</button>";
+        document.getElementById("removedit").innerHTML = "<button onclick='removeRecord()'>Remove Record</button><button onclick='editRedir()'>Edit Record</button>";
     }else if(admin == "user"){
         document.getElementById("removeEditButtons").innerHTML = "";
     }
@@ -290,11 +290,11 @@ function makeid() {
     var libReg = /^[A-z\x00-\xff\s'\.,-\/#!$%\^&\*;:{}=\-_`~()]{1,}/;
     var cityReg = /^[A-z\x00-\xff\s'\.,-\/#!$%\^&\*;:{}=\-_`~()]{1,}/;
     var countryReg = /^[A-z\x00-\xff\s'\.,-\/#!$%\^&\*;:{}=\-_`~()]{1,}/;
-    var webReg = /\b((?:[a-z][\w-]+:(?:\/{1,3}|[a-z0-9%])|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}\/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'".,<>?«»“”‘’]))/i;
+    var webReg = /^(None)|\b((?:[a-z][\w-]+:(?:\/{1,3}|[a-z0-9%])|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}\/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'".,<>?«»“”‘’]))/i;
     var manuReg = /^[A-z\x00-\xff\s'\.,-\/#!$%\^&\*;:{}=\-_`~()]{1,}/;
     var authReg = /^[A-z\x00-\xff\s'\.,-\/#!$%\^&\*;:{}=\-_`~()]{1,}/;
-    var birthReg = /^(?:(0[1-9]|1[012])[\/.](0[1-9]|[12][0-9]|3[01])[\/.][1-9][0-9]{3})$|[1-9][0-9]{1,3}/;
-    var deathReg = /^(?:(0[1-9]|1[012])[\/.](0[1-9]|[12][0-9]|3[01])[\/.][1-9][0-9]{3})$|[1-9][0-9]{1,3}/;
+    var birthReg = /^(Unknown)|^(?:(0[1-9]|1[012])[\/.](0[1-9]|[12][0-9]|3[01])[\/.][1-9][0-9]{3})$|[1-9][0-9]{1,3}/;
+    var deathReg = /^(Unknown)|^(?:(0[1-9]|1[012])[\/.](0[1-9]|[12][0-9]|3[01])[\/.][1-9][0-9]{3})$|[1-9][0-9]{1,3}/;
     var notesReg = /^[A-z\x00-\xff\s'\.,-\/#!$%\^&\*;:{}=\-_`~()]{1,}/;
 
     var msg = "";
@@ -306,15 +306,15 @@ function makeid() {
     }if(!countryReg.test(country)){
         msg = msg + "Country must be Alphabetical. May include international characters.\n";
     }if(!webReg.test(web)){
-        msg = msg + "Website must be in one of the following forms: http://example.com/ or www.example.com.\n";
+        msg = msg + "Website must be in one of the following forms: http://example.com/, www.example.com, or None.\n";
     }if(!manuReg.test(manu)){
         msg = msg + "Manuscript must be Alpha-numeric. May include international characters.\n";
     }if(!authReg.test(author)){
         msg = msg + "Author must be Alpha-numeric. May include international characters.\n";
     }if(!birthReg.test(birth)){
-        msg = msg + "Birthdate must be in one of the following forms: mm/dd/yyyy or yyyy.\n";
+        msg = msg + "Birthdate must be in one of the following forms: mm/dd/yyyy, yyyy, or Unknown.\n";
     }if(!deathReg.test(death)){
-        msg = msg + "Deathdate must be in one of the following forms: mm/dd/yyyy or yyyy.\n";
+        msg = msg + "Deathdate must be in one of the following forms: mm/dd/yyyy, yyyy, or Unknown.\n";
     }if(!notesReg.test()){
         msg = msg + "Notes must be Alpha-numeric. May include international characters.";
     }
@@ -323,5 +323,87 @@ function makeid() {
         return "Match";
     }else{
         return msg;
+    }
+ }
+
+ function editRedir(){
+    var loc = document.getElementById("loc").innerHTML;
+    var date = document.getElementById("bAndD").innerHTML;
+
+    var locArray = loc.split(", ");
+    var dateArray = date.split("-");
+    var city = locArray[0];
+    var country = locArray[1];
+    var birth = dateArray[0];
+    var death = dateArray[1];
+
+    localStorage.setItem("name",document.getElementById("name").innerHTML);
+    localStorage.setItem("lib",document.getElementById("lib").innerHTML);
+    localStorage.setItem("city",city);
+    localStorage.setItem("country",country);
+    localStorage.setItem("link",document.getElementById("link").innerHTML);
+    localStorage.setItem("author",document.getElementById("author").innerHTML);
+    localStorage.setItem("birth",birth);
+    localStorage.setItem("death",death);
+    localStorage.setItem("notes",document.getElementById("notes").innerHTML);
+    localStorage.setItem("OorC",document.getElementById("OorC").innerHTML);
+
+     window.location.assign("MSUEditPage.html");
+ }
+
+ function editPop(){
+     document.getElementById("Manuscript").value = localStorage.getItem("name");
+     document.getElementById("Library").value = localStorage.getItem("lib");
+     document.getElementById("City").value = localStorage.getItem("city");
+     document.getElementById("Country").value = localStorage.getItem("country");
+     document.getElementById("Website").value = localStorage.getItem("link");
+     document.getElementById("Author").value = localStorage.getItem("author");
+     document.getElementById("Birthdate").value = localStorage.getItem("birth");
+     document.getElementById("Deathdate").value = localStorage.getItem("death");
+     document.getElementById("Notes").value = localStorage.getItem("notes");
+     document.getElementById("OorC").value = localStorage.getItem("OorC");
+ }
+
+ function editRecord(){
+    var lib = document.getElementById("Library").value;
+    var city = document.getElementById("City").value;
+    var country = document.getElementById("Country").value;
+    var web = document.getElementById("Website").value;
+    var manu = document.getElementById("Manuscript").value;
+    var author = document.getElementById("Author").value;
+    var birth = document.getElementById("Birthdate").value;
+    var death = document.getElementById("Deathdate").value;
+    var notes = document.getElementById("Notes").value;
+    var OorC = document.getElementById("OorC").value;
+
+    var reg = addRegexCheck(lib, city, country, web, manu, author, birth, death, notes);
+
+    if(reg == "Match"){
+        var req = new XMLHttpRequest();
+        req.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200){
+                if(this.responseText == "Success"){
+                    alert("Record Successfully Edited.")
+                    localStorage.removeItem("name");
+                    localStorage.removeItem("lib");
+                    localStorage.removeItem("city");
+                    localStorage.removeItem("country");
+                    localStorage.removeItem("link");
+                    localStorage.removeItem("author");
+                    localStorage.removeItem("birth");
+                    localStorage.removeItem("death");
+                    localStorage.removeItem("notes");
+                    localStorage.removeItem("OorC");
+                    window.location.assign("./MSUdetails.html");
+                }else{
+                    alert(this.responseText)
+                }
+            }
+        }
+        req.open("GET", "php/MSUEditRecord.php?id=" + sessionStorage.getItem("msuColumn") + "&q=" + lib + "&r=" + city + "&s=" + country + "&t=" + web + "&u=" + manu + "&v=" + author + "&w=" + birth + "&x=" + death + "&y=" + notes + "&z=" + OorC, true);
+        req.send();
+    }
+    else{
+        alert(reg);
     }
  }

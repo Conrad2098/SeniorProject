@@ -156,7 +156,7 @@ function welcome(){
     var admin = isAdmin();
 
     if(admin == "admin"){
-        document.getElementById("removeEditButtons").innerHTML = "<button onclick='remove()' class='bigsearch-button'>Remove Record</button><button onclick='edit()' class='bigsearch-button'>Edit Record</button>";
+        document.getElementById("removeEditButtons").innerHTML = "<button onclick='remove()' class='bigsearch-button'>Remove Record</button><button onclick='editRedirect()' class='bigsearch-button'>Edit Record</button>";
     }else if(admin == "user"){
         document.getElementById("removeEditButtons").innerHTML = "";
     }
@@ -291,7 +291,7 @@ function welcome(){
     var extentReg = /^[A-z\x00-\xff\s'\.,-\/#!$%\^&\*;:{}=\-_`~()]{1,}/;
     var authReg = /^[A-z\x00-\xff\s'\.,-\/#!$%\^&\*;:{}=\-_`~()]{1,}/;
     var descReg = /^[A-z\x00-\xff\s'\.,-\/#!$%\^&\*;:{}=\-_`~()]{1,}/;
-    var linkReg = /\b((?:[a-z][\w-]+:(?:\/{1,3}|[a-z0-9%])|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}\/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'".,<>?«»“”‘’]))/i;
+    var linkReg = /^(None)|\b((?:[a-z][\w-]+:(?:\/{1,3}|[a-z0-9%])|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}\/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'".,<>?«»“”‘’]))/i;
     var notesReg = /^[A-z\x00-\xff\s'\.,-\/#!$%\^&\*;:{}=\-_`~()]{1,}/;
 
     var msg = "";
@@ -311,7 +311,7 @@ function welcome(){
     }if(!descReg.test(desc)){
         msg = msg + "Description must be Alpha-numeric. May include international characters.\n";
     }if(!linkReg.test(link)){
-        msg = msg + "Link must be alpha-numeric and in one of the following forms: http://example.com/ or www.example.com.\n";
+        msg = msg + "Link must be alpha-numeric and in one of the following forms: http://example.com/, www.example.com, or None.\n";
     }if(!notesReg.test(notes)){
         msg = msg + "Notes must be Alpha-numeric. May include international characters.";
     }
@@ -320,5 +320,75 @@ function welcome(){
         return "Match";
     }else{
         return msg;
+    }
+}
+
+ function editRedirect(){
+    localStorage.setItem("inst",document.getElementById("inst").innerHTML);
+    localStorage.setItem("coll",document.getElementById("coll").innerHTML);
+    localStorage.setItem("instcollnum",document.getElementById("instcollnum").innerHTML);
+    localStorage.setItem("incdates",document.getElementById("incdates").innerHTML);
+    localStorage.setItem("extent",document.getElementById("extent").innerHTML);
+    localStorage.setItem("subHead",document.getElementById("subHead").innerHTML);
+    localStorage.setItem("desc",document.getElementById("desc").innerHTML);
+    localStorage.setItem("link",document.getElementById("link").innerHTML);
+    localStorage.setItem("notes",document.getElementById("notes").innerHTML);
+    localStorage.setItem("id", document.getElementById("id").innerHTML);
+
+     window.location.assign("http://localhost/seniorProject/WEditRecord.html");
+ }
+
+ function recordEPop(){
+    document.getElementById("institution").value = localStorage.getItem("inst");
+    document.getElementById("collection").value = localStorage.getItem("coll");
+    document.getElementById("instcollnum").value = localStorage.getItem("instcollnum");
+    document.getElementById("inclusivedates").value = localStorage.getItem("incdates");
+    document.getElementById("extent").value = localStorage.getItem("extent");
+    document.getElementById("subjectheadings").value = localStorage.getItem("subHead");
+    document.getElementById("description").value = localStorage.getItem("desc");
+    document.getElementById("link").value = localStorage.getItem("link");
+    document.getElementById("notes").value = localStorage.getItem("notes");
+ }
+
+ function recordEdit(){
+    var inst = document.getElementById("institution").value;
+    var coll = document.getElementById("collection").value;
+    var instcollnum = document.getElementById("instcollnum").value;
+    var incDates = document.getElementById("inclusivedates").value;
+    var extent = document.getElementById("extent").value;
+    var subHeads = document.getElementById("subjectheadings").value;
+    var desc = document.getElementById("description").value;
+    var link = document.getElementById("link").value;
+    var notes = document.getElementById("notes").value;
+
+    var reg = addRegexCheck(inst, coll, instcollnum, incDates, extent, subHeads, desc, link, notes);
+    
+    if(reg == "Match"){
+        var req = new XMLHttpRequest();
+        req.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200){
+                if(this.responseText == "Success"){
+                    alert("Record Successfully Edited.")
+                    localStorage.removeItem("inst");
+                    localStorage.removeItem("coll");
+                    localStorage.removeItem("instcollnum");
+                    localStorage.removeItem("incdates");
+                    localStorage.removeItem("extent");
+                    localStorage.removeItem("subHead");
+                    localStorage.removeItem("desc");
+                    localStorage.removeItem("link");
+                    localStorage.removeItem("notes");
+                    sessionStorage.setItem("item", coll);
+                    window.location.assign("http://localhost/seniorProject/Wdetails.html");
+                }else{
+                    alert(this.responseText)
+                }
+            }
+        }
+        req.open("GET", "http://localhost/seniorProject/php/WEditRecord.php?id=" + localStorage.getItem("id") + "&q=" + inst + "&r=" + coll + "&s=" + instcollnum + "&t=" + incDates + "&u=" + extent + "&v=" + subHeads + "&w=" + desc + "&x=" + link + "&y=" + notes, true);
+        req.send();
+    }
+    else{
+        alert(reg);
     }
 }

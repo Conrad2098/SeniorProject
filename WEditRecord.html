@@ -132,7 +132,7 @@
     </style>
 </head>
 
-<body class="logo-type-custom demostyle-type-customdemostyle header-type-normal mainbody-overlay-light font-family-bitter font-size-is-default menu-type-dropdownmenu menu-dropdownmenu-position-showcase-a layout-mode-responsive col12 option-com-content menu-library thew_15" onload="welcome()">
+<body class="logo-type-custom demostyle-type-customdemostyle header-type-normal mainbody-overlay-light font-family-bitter font-size-is-default menu-type-dropdownmenu menu-dropdownmenu-position-showcase-a layout-mode-responsive col12 option-com-content menu-library thew_15" onload="recordEPop()">
     <div id="rt-page-surround">
         <div class="rt-pagesurround-overlay">
             <div id="rt-body-surround">
@@ -216,9 +216,7 @@
 
                 <br>
                 <div id="rt-fullwidth" style="text-align: center;">
-                    <h1>Welcome Admin</h1><br>
-                    <div style="width: 50%; text-align: center;">
-                        <h2>Add a Record</h2><br>
+                    <h2>Edit a Record</h2><br>
                         <input id="institution" type="text" placeholder="Insitution" style="color: #174074; width: 50%;"><br><br>
                         <input id="collection" type="text" placeholder="Collection" style="color: #174074; width: 50%;"><br><br>
                         <input id="instcollnum" type="text" placeholder="Institution Collection Number" style="color: #174074; width: 50%;"><br><br>
@@ -227,12 +225,8 @@
                         <input id="subjectheadings" type="text" placeholder="Subject Headings" style="color: #174074; width: 50%;"><br><br>
                         <input id="description" type="text" placeholder="Description" style="color: #174074; width: 50%;"><br><br>
                         <input id="link" type="text" placeholder="Web Link" style="color: #174074; width: 50%;"><br><br>
-                        <input id="notes" type="text" placeholder="Notes" style="color: #174074; width: 50%;"><br><br>
-                        <button onclick="recordAdd()">Add Record</button><br><br>
-                    </div>
-                    <div style="width: 50%; text-align: center;">
-                        <h2>Approve an Account</h2>
-                    </div>
+                        <textarea id="notes" type="textbox" placeholder="Notes" style="color: #174074; width: 50%;"></textarea><br><br>
+                        <button onclick="recordEdit()">Save Changes</button>  <button onclick="location.href = 'http://localhost/seniorProject/Wdetails.html'">Cancel</button><br><br>
                 </div>
                 <footer id="rt-footer-surround" style="bottom: 0; left: 0; right: 0;">
                     <div id="rt-bottom">
