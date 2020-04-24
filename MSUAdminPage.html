@@ -67,7 +67,7 @@
 
 </head>
 
-<body class="basedrupal  simplean " onload="loginSwap(); adminPanel();">
+<body class="basedrupal  simplean ">
 
     <!--[if lte IE 9]><p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</p><![endif]-->
 
@@ -190,13 +190,14 @@
 
                         <div class="menu-container alter-bootstrap-dropdown ">
                             <ul class="menu nav navbar-nav">
-                                <ul class="menu nav navbar-nav" id="navBar">
+                                <ul class="menu nav navbar-nav">
                                     <li class="first leaf"><a href="./msstateDrupal.html" title="">Home</a></li>
                                     <li class="leaf"><a href="./objectives.html">Objectives</a></li>
                                     <li class="leaf"><a href="#" onclick="FreshSearch()">Browse</a></li>
                                     <li class="leaf"><a href="./volunteers.html">Volunteers</a></li>
-                                    <li class="leaf active"><a href="./aboutUs.html">About Us</a></li>
-                                    <li id="account" class="leaf"><a href="./login.html">Login</a></li>
+                                    <li class="leaf"><a href="./aboutUs.html">About Us</a></li>
+                                    <li class="leaf"><a href="./MSUAccountPage.html">Account</a></li>
+                                    <li class="leaf active"><a href="#">Admin</a></li>
                                 </ul>
                             </ul>
                         </div>
@@ -238,16 +239,29 @@
                                                     <div id="block-block-3" class="block block-block">
                                                         <div class="content">
                                                             <div class="jumbotron text-left">
-                                                                <h1>About Us</h1><br>
-                                                                <h2>Project Directors:</h2>
-                                                                <h3>Professor Dan Embree</h3>
-                                                                <p>Professor (retired)</p>
-                                                                <p>(510)-848-1800</p>
-                                                                <p>sothsegger@comcast.net</p><br><br>
-                                                                <h3>Prof. Dr. Jacek Soszynski</h3>
-                                                                <p>Institute for the History of Science, Polish Academy of Sciences</p>
-                                                                <p>+48 22 5520239</p>
-                                                                <p>pineus22@gmail.com</p>
+                                                                <div style="width: 33%; display: inline-block;">
+                                                                    <H1>Welcome Admin</H1><br><br>
+                                                                    <h2>Add a Record</h2><br>
+                                                                    <input id="Library" type="text" placeholder="Library" class="form-control"><br>
+                                                                    <input id="City" type="text" placeholder="City" class="form-control"><br>
+                                                                    <input id="Country" type="text" placeholder="Country" class="form-control"><br>
+                                                                    <input id="Website" type="website" placeholder="Website" class="form-control"><br>
+                                                                    <input id="Manuscript" type="text" placeholder="Manuscript Name" class="form-control"><br>
+                                                                    <input id="Author" type="text" placeholder="Author" class="form-control"><br>
+                                                                    <input id="Birthdate" type="text" placeholder="Birthdate mm/dd/yyyy or yyyy" class="form-control"><br>
+                                                                    <input id="Deathdate" type="text" placeholder="Deathdate mm/dd/yyyy or yyyy" class="form-control"><br>
+                                                                    <textarea id="Notes" placeholder="Notes..." cols="30" rows="10" class="form-control"></textarea><br>
+                                                                    <select id="OorC" class="form-control">
+                                                                        <option id="Original" value="Original">Original</option>
+                                                                        <option id="Copy" value="Copy">Copy</option>
+                                                                    </select><br>
+                                                                    <button onclick="addRecord()">Add Record</button>
+                                                                </div>
+                                                                <div style="width: 66%; display: inline-block; float: right; padding-left: 10px;">
+                                                                    <h1 style="color: #f7f7f7;">Welcome Admin</h1><br><br>
+                                                                    <h2>Account Requests</h2>
+
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>

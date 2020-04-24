@@ -96,7 +96,7 @@ function otherCopies(){
 }
 
 function loadMap(){
-    alert("AHHHHH");
+    alert();
     L.mapbox.accessToken = 'pk.eyJ1IjoiY29ucmFkMjA5OCIsImEiOiJjazU2d2c0bDgwOXRnM25wa3owM2tubjgyIn0.h58Ce7phnlgqh5Ld6YN8yg';
     var geocoder = L.mapbox.geocoder('mapbox.places');
 
@@ -114,12 +114,14 @@ function loadMap(){
     var count = document.getElementById("otherCopies").childElementCount;
     var regex = /[0-9]. /;
 
-    for(var i = 1; i < count + 1; i++){
-        var preParse = document.getElementById("" + i + "").innerHTML;
-        var res = preParse.split(regex);
-        res = res[1].slice(0)
-        var loc0 = res
-        geocoder.query(res, showMap2)
+    if(count > 0){
+        for(var i = 1; i < count + 1; i++){
+            var preParse = document.getElementById("" + i + "").innerHTML;
+            var res = preParse.split(regex);
+            res = res[1].slice(0)
+            var loc0 = res
+            geocoder.query(res, showMap2)
+        }
     }
 
     function showMap(err, data) {

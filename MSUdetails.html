@@ -60,7 +60,7 @@
 
 </head>
 
-<body onload="viewDetails(); otherCopies(); loadMap(); loginSwap();" class="basedrupal  simplean ">
+<body onload="viewDetails(); otherCopies(); loadMap(); loginSwap(); removeEdit(); adminPanel();" class="basedrupal  simplean ">
 
     <!--[if lte IE 9]><p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</p><![endif]-->
 
@@ -183,13 +183,13 @@
 
                         <div class="menu-container alter-bootstrap-dropdown ">
                             <ul class="menu nav navbar-nav">
-                                <ul class="menu nav navbar-nav">
+                                <ul class="menu nav navbar-nav" id="navBar">
                                     <li class="first leaf"><a href="./msstateDrupal.html" title="">Home</a></li>
                                     <li class="leaf"><a href="./objectives.html">Objectives</a></li>
                                     <li class="leaf"><a href="#" onclick="FreshSearch()">Browse</a></li>
                                     <li class="leaf"><a href="./volunteers.html">Volunteers</a></li>
                                     <li class="leaf"><a href="./aboutUs.html">About Us</a></li>
-                                    <li id="account" class="last leaf"><a href="./login.html">Login</a></li>
+                                    <li id="account" class="leaf"><a href="./login.html">Login</a></li>
                                 </ul>
                             </ul>
                         </div>
@@ -301,6 +301,7 @@
                                                         <div class="content-body" id="details">
 
                                                         </div>
+                                                        <div id='removedit'></div>
                                                     </div>
                                                 </div>
                                             </div>

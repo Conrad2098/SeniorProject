@@ -1,5 +1,7 @@
 <?php
 
+error_reporting(E_ERROR);
+
 $record = $_REQUEST['q'];
 
 $conn = new mysqli("localhost", "root", "", "seniorProject");
@@ -17,9 +19,7 @@ $name = $row['ManuscriptName'];
 $query = "SELECT * FROM msstate WHERE ManuscriptName = '" . $name . "' EXCEPT SELECT * FROM msstate WHERE ID = '" . $record . "';";
 $results = $conn->query($query);
 
-if(mysqli_num_rows($results) == 0){
-    echo "<p>No other Instances</p>";
-}else{
+if(mysqli_num_rows($results) != 0){
     $x = 1;
     while($rows = mysqli_fetch_array($results, MYSQLI_ASSOC)){
         echo "

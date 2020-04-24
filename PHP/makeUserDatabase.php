@@ -25,7 +25,7 @@ if ($conn->query($drop) === TRUE) {
 
 $table = "CREATE TABLE msuUser(
     ID int NOT NULL PRIMARY KEY,
-    Username varchar(128),
+    Username varchar(128) UNIQUE,
     Pass varchar(128),
     Email varchar(128),
     Institution varchar(256),
@@ -40,7 +40,7 @@ if ($conn->query($table) === TRUE) {
 
 $table = "CREATE TABLE WUser(
     ID int NOT NULL PRIMARY KEY,
-    Username varchar(128),
+    Username varchar(128) UNIQUE,
     Pass varchar(128),
     Email varchar(128),
     Institution varchar(256),

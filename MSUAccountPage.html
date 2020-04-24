@@ -67,7 +67,7 @@
 
 </head>
 
-<body class="basedrupal  simplean ">
+<body class="basedrupal  simplean " onload="welcome(); adminPanel();">
 
     <!--[if lte IE 9]><p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</p><![endif]-->
 
@@ -190,7 +190,7 @@
 
                         <div class="menu-container alter-bootstrap-dropdown ">
                             <ul class="menu nav navbar-nav">
-                                <ul class="menu nav navbar-nav">
+                                <ul class="menu nav navbar-nav" id="navBar">
                                     <li class="first leaf"><a href="./msstateDrupal.html" title="">Home</a></li>
                                     <li class="leaf"><a href="./objectives.html">Objectives</a></li>
                                     <li class="leaf"><a href="#" onclick="FreshSearch()">Browse</a></li>
@@ -238,8 +238,17 @@
                                                     <div id="block-block-3" class="block block-block">
                                                         <div class="content">
                                                             <div class="jumbotron text-left">
-                                                                <H2>Account Information</H2><br><br>
-                                                                <button onclick="logout()" class="">Logout</button>
+                                                                <H1 id="welcome">Welcome</H1><br><br>
+                                                                <h2>Account Information</h2><br>
+                                                                <h3>Change Password</h3><br>
+                                                                <input id="currentPass" type="password" placeholder="Current Password" style="width: 33%; display: inline-block;" class="form-control">
+                                                                <input id="newPass" type="text" placeholder="New Password" style="width: 33%; display: inline-block;" class="form-control"><br><br>
+                                                                <button onclick="passChange()">Change Password</button>
+                                                                <br><br>
+                                                                <h3>Logout</h3>
+                                                                <button onclick="logout()">Logout</button><br><br>
+                                                                <h3>Delete Account</h3>
+                                                                <button onclick="removeAccount()">Delete</button><br><br>
                                                             </div>
                                                         </div>
                                                     </div>

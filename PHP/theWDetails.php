@@ -4,7 +4,7 @@ $record = $_REQUEST['q'];
 
 $conn = new mysqli("localhost", "root", "", "seniorProject");
 
-$query = "SELECT * FROM theW WHERE CollectionTitle = '" . $record . "' LIMIT 1;";
+$query = 'SELECT * FROM theW WHERE CollectionTitle = "' . $record . '" LIMIT 1;';
 $result = $conn->query($query);
 if(!$result){
     echo "<h2 style='text-align:center;'>No Results Matching Search<h2>";

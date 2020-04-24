@@ -38,7 +38,7 @@ echo "
 <h4>Author: </h4><p>" . $row['Author'] . "</p>
 <h4>Birth and Death: </h4><p>" . $BDate . "-" . $DDate . "</p>
 <h4>Notes: </h4><p>" . $row['Notes'] . "</p>
-<h4>Original or Copy: </h4><p>" . $row['OorC'] . "</p>
+<h4>Original or Copy: </h4><p>" . $row['OorC'] . "</p><br><br>
 ";
 
 ?>
