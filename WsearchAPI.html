@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <title>Search API</title>
+  <script type="text/javascript" src="js/Wsearch.js"></script>
+  <script type="text/javascript" src="js/WUser.js"></script>
+  <base href="https://www.muw.edu/library" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <meta name="rights" content="©1996-2019 Mississippi University for Women" />
+  <meta name="generator" content="Joomla! - Open Source Content Management" />
+  <title>Fant Memorial Library - MUW</title>
+  <link href="/templates/rt_chimera/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" />
+  <link href="/plugins/system/rokbox/assets/styles/rokbox.css" rel="stylesheet" type="text/css" />
+  <link href="/templates/rt_chimera/css-compiled/bootstrap.css" rel="stylesheet" type="text/css" />
+  <link href="/templates/rt_chimera/css-compiled/master-d4bbec0a46e2cadf15a8646774805072.css" rel="stylesheet" type="text/css" />
+  <link href="/templates/rt_chimera/css/master-gecko.css" rel="stylesheet" type="text/css" />
+  <link href="/templates/rt_chimera/css-compiled/demo-d4bbec0a46e2cadf15a8646774805072.css" rel="stylesheet" type="text/css" />
+  <link href="/templates/rt_chimera/css-compiled/mediaqueries.css" rel="stylesheet" type="text/css" />
+  <link href="/templates/rt_chimera/css-compiled/grid-flexbox-responsive.css" rel="stylesheet" type="text/css" />
+  <link href="/templates/rt_chimera/css-compiled/menu-dropdown-direction.css" rel="stylesheet" type="text/css" />
+  <link href="/templates/rt_chimera/css-compiled/animate.css" rel="stylesheet" type="text/css" />
+  <link href="https://fonts.googleapis.com/css?family=Bitter:regular,italic,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css" />
+  <link href="/templates/rt_chimera/css-compiled/menu.css" rel="stylesheet" type="text/css" />
+  <style type="text/css">
+      #rt-logo {background: url(/images/logos/colleges/library_header_logo.png) 50% 0 no-repeat !important;}
+      #rt-logo {width: 300px;height: 75px;}
+
+      body { font-family: 'Bitter', 'Helvetica', arial, serif; }
+  </style>
+  <script type="application/json" class="joomla-script-options new">
+      {"csrf.token":"b3c753b53c3c8a3043303a51ea4d5d26","system.paths":{"root":"","base":""}}
+  </script>
+  <script src="/media/jui/js/jquery.min.js?54cd2b0478a2045b4f0deceee7d99202" type="text/javascript"></script>
+  <script src="/media/jui/js/jquery-noconflict.js?54cd2b0478a2045b4f0deceee7d99202" type="text/javascript"></script>
+  <script src="/media/jui/js/jquery-migrate.min.js?54cd2b0478a2045b4f0deceee7d99202" type="text/javascript"></script>
+  <script src="/media/system/js/caption.js?54cd2b0478a2045b4f0deceee7d99202" type="text/javascript"></script>
+  <script src="/media/system/js/mootools-core.js?54cd2b0478a2045b4f0deceee7d99202" type="text/javascript"></script>
+  <script src="/media/system/js/core.js?54cd2b0478a2045b4f0deceee7d99202" type="text/javascript"></script>
+  <script src="/media/system/js/mootools-more.js?54cd2b0478a2045b4f0deceee7d99202" type="text/javascript"></script>
+  <script src="/plugins/system/rokbox/assets/js/rokbox.js" type="text/javascript"></script>
+  <script src="/templates/rt_chimera/js/chart.js" type="text/javascript"></script>
+  <script src="/templates/rt_chimera/js/wow.js" type="text/javascript"></script>
+  <script src="/templates/rt_chimera/js/wow-init.js" type="text/javascript"></script>
+  <script src="/templates/rt_chimera/js/bind-polyfill.min.js" type="text/javascript"></script>
+  <script src="/templates/rt_chimera/js/smooth-scroll.min.js" type="text/javascript"></script>
+  <script src="/libraries/gantry/js/browser-engines.js" type="text/javascript"></script>
+  <script src="/templates/rt_chimera/js/rokmediaqueries.js" type="text/javascript"></script>
+  <script src="/modules/mod_roknavmenu/themes/default/js/rokmediaqueries.js" type="text/javascript"></script>
+  <script src="/modules/mod_roknavmenu/themes/default/js/sidemenu.js" type="text/javascript"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body >
+  <div class="custom library_search">
+    <div style="margin:2%;">
+      <div style="max-width:1200px; margin:auto;background:grey; padding: 15px;">
+        <div style="margin-left: 5px; width: 100%;">
+          <script src="https://support.ebscohost.com/eit/scripts/ebscohostsearch.js" type="text/javascript"></script>
+          <img src="http://localhost/seniorproject/images/WLogo.png" alt="The W" style='float: left; height: auto; width: 10%; margin-right: 10px;'>
+          <h3 style="color: #FFF; margin-left: 20px">Search Mississippi Women's Archival Database</h4>
+          <input style=';width: 60%' id="searchbox" name="ebscohostsearchtext" type="text" placeholder="Search..." class="textbox" />
+            <select id="category" class="bigsearch-button" style="margin-left: 10px; margin-right: 10px;width: 15%;display:inline;">
+                <option id="CollectionTitle" value="CollectionTitle">Collection Title</option>
+                <option id="Institution" value="Institution">Institution</option>
+                <option id="SubjectHeadings" value="SubjectHeadings">Subject Headings</option>
+            </select>
+          <input style="width: 10%" type="submit" value="SEARCH" class="bigsearch-button" onclick="redir()"/>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
