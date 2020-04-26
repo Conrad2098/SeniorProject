@@ -407,3 +407,74 @@ function makeid() {
         alert(reg);
     }
  }
+
+ function verifyTable(){
+    var req = new XMLHttpRequest();
+    req.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200){
+         document.getElementById("verifyTable").innerHTML = this.responseText
+        }
+    };
+    req.open("GET", "./php/MSUVerifyTable.php", true);
+    req.send();
+ }
+
+ function verifyUser(){
+     var id = document.getElementById("id").innerHTML;
+
+     var req = new XMLHttpRequest();
+    req.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200){
+         if(this.response == "Fail"){
+            alert(this.responseText);
+         }else{
+             alert("User Access Granted.");
+             location.reload();
+         }
+        }
+    };
+    req.open("GET", "./php/MSUVerifyUser.php?q=" + id, true);
+    req.send();
+ }
+
+ function verifyAdmin(){
+    var id = document.getElementById("id").innerHTML;
+    var confirm = prompt("You are about to grant this user admin-level permissions. Type 'Confirm' to contiune.");
+
+    if(confirm == 'Confirm'){
+        var req = new XMLHttpRequest();
+        req.onreadystatechange = function() {
+           if (this.readyState == 4 && this.status == 200){
+            if(this.response == "Fail"){
+               alert(this.responseText);
+            }else{
+                alert("Admin Access Granted.");
+                location.reload();
+            }
+           }
+       };
+       req.open("GET", "./php/MSUVerifyAdmin.php?q=" + id, true);
+       req.send();
+    }
+}
+
+ function rejectUser(){
+    var id = document.getElementById("id").innerHTML;
+    var confirm = prompt("You are about to reject this user's account. Type 'Confirm' to contiune.");
+
+    if(confirm == 'Confirm'){
+        var req = new XMLHttpRequest();
+        req.onreadystatechange = function() {
+           if (this.readyState == 4 && this.status == 200){
+            if(this.response == "Fail"){
+               alert(this.responseText);
+            }else{
+                alert("Account Rejected.");
+                location.reload();
+            }
+           }
+       };
+       req.open("GET", "./php/MSURejectUser.php?q=" + id, true);
+       req.send();
+    }
+ }
