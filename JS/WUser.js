@@ -451,15 +451,81 @@ function rejectUser(){
        var req = new XMLHttpRequest();
        req.onreadystatechange = function() {
           if (this.readyState == 4 && this.status == 200){
-           if(this.response == "Fail"){
-              alert(this.responseText);
-           }else{
-               alert("Account Rejected.");
-               location.reload();
-           }
+            if(this.response == "Fail"){
+                alert(this.responseText);
+            }else{
+                alert("Account Rejected.");
+                location.reload();
+            }
           }
       };
       req.open("GET", "./php/WRejectUser.php?q=" + id, true);
       req.send();
    }
+}
+
+function commentTable(){
+    var req = new XMLHttpRequest();
+       req.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200){
+            if(this.response == "Fail"){
+                alert(this.responseText);
+            }else{
+                document.getElementById("commentTable").innerHTML = this.responseText;
+            }
+          }
+      };
+      req.open("GET", "./php/WCommentTable.php", true);
+      req.send();
+}
+
+function removeComment(x){
+    var comm = document.getElementById("Comment" + x).innerHTML;
+
+    var req = new XMLHttpRequest();
+    req.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200){
+            if(this.response == "Fail"){
+                alert(this.responseText);
+            }else{
+                alert("Comment Removed.");
+                location.reload();
+            }
+        }
+    };
+    req.open("GET", "./php/WRemoveComment.php?q=" + comm, true);
+    req.send();
+}
+
+function commentBox(){
+    var admin = isAdmin();
+
+    if(admin == "user"){
+        document.getElementById("commentBox").innerHTML = "<textarea placeholder='Comment Here...' id='comment' style='width: 50%; height: 100px'></textarea><br><button onclick='submitComment()'>Submit Comment</button>";
+    }
+}
+
+function submitComment(){
+    var coll = document.getElementById("coll").innerHTML;
+    
+    var cook = "; " + document.cookie;
+    var parts = cook.split("; wEmail=");
+    if(parts.length == 2){
+        var i = parts.pop().split(";").shift();
+    }
+
+    var comm = document.getElementById("comment").value;
+
+    var req = new XMLHttpRequest();
+    req.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200){
+            if(this.responseText == "false"){
+                alert("Error");
+            }else{
+                alert("Comment submitted to Admins.")
+            }
+        }
+    }
+    req.open("GET", "http://localhost/seniorproject/php/WSubmitComment.php?q=" + coll + "&r=" + i + "&s=" + comm, true);
+    req.send();
 }

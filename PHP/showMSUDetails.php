@@ -30,7 +30,7 @@ if($row['Website'] == NULL){
 
 
 echo "
-<h4>ID: </h4><p>" . $row['ID'] . "</p>
+<h4>ID: </h4><p id='id'>" . $row['ID'] . "</p>
 <h4>Manuscript Name: </h4><p id='name'>" . $row['ManuscriptName'] . "</p>
 <h4>Library Name: </h4><p id='lib'>" . $row['LibraryName'] . "</p>
 <h4>Location: </h4><p id='loc'>" . $row['City'] . ", " . $row['Country'] . "</p>

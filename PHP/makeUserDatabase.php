@@ -22,6 +22,18 @@ if ($conn->query($drop) === TRUE) {
     echo "Error Dropping Table: " . $conn->error;
 }
 
+$drop = "DROP TABLE IF EXISTS MSUComment";
+if ($conn->query($drop) === TRUE) {
+} else {
+    echo "Error Dropping Table: " . $conn->error;
+}
+
+$drop = "DROP TABLE IF EXISTS WComment";
+if ($conn->query($drop) === TRUE) {
+} else {
+    echo "Error Dropping Table: " . $conn->error;
+}
+
 
 $table = "CREATE TABLE msuUser(
     ID int NOT NULL PRIMARY KEY,
@@ -53,6 +65,31 @@ if ($conn->query($table) === TRUE) {
     echo "Error Creating Table: " . $conn->error;
 }
 
+$table = "CREATE TABLE MSUComment(
+    ID int NOT NULL PRIMARY KEY,
+    Email varchar(128),
+    DocumentID varchar(32),
+    Document varchar(128),
+    Comment varchar(1000)
+    );";
+if ($conn->query($table) === TRUE) {
+    echo "MSU Comment Table Created. ";
+} else {
+    echo "Error Creating Table: " . $conn->error;
+}
+
+$table = "CREATE TABLE WComment(
+    ID int NOT NULL PRIMARY KEY,
+    Email varchar(128),
+    Document varchar(128),
+    Comment varchar(1000)
+    );";
+if ($conn->query($table) === TRUE) {
+    echo "W Comment Table Created. ";
+} else {
+    echo "Error Creating Table: " . $conn->error;
+}
+
 $MSUadminPass = password_hash("MSUAdminPass", PASSWORD_DEFAULT);
 $MSUuserPass = password_hash("MSUUserPass", PASSWORD_DEFAULT);
 $WadminPass = password_hash("WAdminPass", PASSWORD_DEFAULT);
@@ -66,5 +103,10 @@ $conn->query($insert);
 $insert = "INSERT INTO WUser(ID, Username, Pass, Email, Institution, isAdmin, Authorized) VALUES('1', 'Admin', '" . $WadminPass . "', 'admin@admin.com', 'TheW', 1, 1)";
 $conn->query($insert);
 $insert = "INSERT INTO WUser(ID, Username, Pass, Email, Institution, isAdmin, Authorized) VALUES('2', 'User', '" . $WuserPass . "', 'user@user.com', 'TheW', 0, 1)";
+$conn->query($insert);
+
+$insert = "INSERT INTO MSUComment(ID, Email, DocumentID, Document, Comment) VALUES('0', 'admin@admin.com', '0', 'None', 'None');";
+$conn->query($insert);
+$insert = "INSERT INTO WComment(ID, Email, Document, Comment) VALUES('0', 'admin@admin.com', 'None', 'None');";
 $conn->query($insert);
 ?>

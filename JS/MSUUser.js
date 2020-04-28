@@ -159,7 +159,7 @@ function makeid() {
     if(admin == "admin"){
         document.getElementById("removedit").innerHTML = "<button onclick='removeRecord()'>Remove Record</button><button onclick='editRedir()'>Edit Record</button>";
     }else if(admin == "user"){
-        document.getElementById("removeEditButtons").innerHTML = "";
+        document.getElementById("removedit").innerHTML = "";
     }
  }
 
@@ -478,3 +478,70 @@ function makeid() {
        req.send();
     }
  }
+
+ function commentTable(){
+    var req = new XMLHttpRequest();
+       req.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200){
+            if(this.response == "Fail"){
+                alert(this.responseText);
+            }else{
+                document.getElementById("commentTable").innerHTML = this.responseText;
+            }
+          }
+      };
+      req.open("GET", "./php/MSUCommentTable.php", true);
+      req.send();
+}
+
+function removeComment(x){
+    var comm = document.getElementById("Comment" + x).innerHTML;
+
+    var req = new XMLHttpRequest();
+    req.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200){
+            if(this.response == "Fail"){
+                alert(this.responseText);
+            }else{
+                alert("Comment Removed.");
+                location.reload();
+            }
+        }
+    };
+    req.open("GET", "./php/MSURemoveComment.php?q=" + comm, true);
+    req.send();
+}
+
+function commentBox(){
+    var admin = isAdmin();
+
+    if(admin == "user"){
+        document.getElementById("commentBox").innerHTML = "<textarea placeholder='Comment Here...' id='comment' style='width: 50%; height: 100px'></textarea><br><button onclick='submitComment()'>Submit Comment</button>";
+    }
+}
+
+function submitComment(){
+    var doc = document.getElementById("name").innerHTML;
+    
+    var cook = "; " + document.cookie;
+    var parts = cook.split("; email=");
+    if(parts.length == 2){
+        var i = parts.pop().split(";").shift();
+    }
+
+    var docID = document.getElementById("id").innerHTML
+    var comm = document.getElementById("comment").value;
+
+    var req = new XMLHttpRequest();
+    req.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200){
+            if(this.responseText == "false"){
+                alert("Error");
+            }else{
+                alert("Comment submitted to Admins.")
+            }
+        }
+    }
+    req.open("GET", "./php/MSUSubmitComment.php?q=" + doc + "&r=" + i + "&s=" + comm + "&t=" + docID, true);
+    req.send();
+}

@@ -132,7 +132,7 @@
     </style>
 </head>
 
-<body class="logo-type-custom demostyle-type-customdemostyle header-type-normal mainbody-overlay-light font-family-bitter font-size-is-default menu-type-dropdownmenu menu-dropdownmenu-position-showcase-a layout-mode-responsive col12 option-com-content menu-library thew_15" onload="verifyTable()">
+<body class="logo-type-custom demostyle-type-customdemostyle header-type-normal mainbody-overlay-light font-family-bitter font-size-is-default menu-type-dropdownmenu menu-dropdownmenu-position-showcase-a layout-mode-responsive col12 option-com-content menu-library thew_15" onload="verifyTable(); commentTable()">
     <div id="rt-page-surround">
         <div class="rt-pagesurround-overlay">
             <div id="rt-body-surround">
@@ -217,22 +217,28 @@
                 <br>
                 <div id="rt-fullwidth" style="text-align: center;">
                     <h1>Welcome Admin</h1><br>
-                    <div style="width: 40%; text-align: center;">
-                        <h2>Add a Record</h2><br>
-                        <input id="institution" type="text" placeholder="Insitution" style="color: #174074; width: 50%;"><br><br>
-                        <input id="collection" type="text" placeholder="Collection" style="color: #174074; width: 50%;"><br><br>
-                        <input id="instcollnum" type="text" placeholder="Institution Collection Number" style="color: #174074; width: 50%;"><br><br>
-                        <input id="inclusivedates" type="text" placeholder="Inclusive Dates" style="color: #174074; width: 50%;"><br><br>
-                        <input id="extent"" type="text" placeholder="Extent" style="color: #174074; width: 50%;"><br><br>
-                        <input id="subjectheadings" type="text" placeholder="Subject Headings" style="color: #174074; width: 50%;"><br><br>
-                        <input id="description" type="text" placeholder="Description" style="color: #174074; width: 50%;"><br><br>
-                        <input id="link" type="text" placeholder="Web Link" style="color: #174074; width: 50%;"><br><br>
-                        <textarea id="notes" type="text" placeholder="Notes" style="color: #174074; width: 50%;"></textarea><br><br>
-                        <button onclick="recordAdd()">Add Record</button><br><br>
+                    <div style="display: flex;">
+                        <div style="width: 40%; text-align: center;">
+                            <h2>Add a Record</h2><br>
+                            <input id="institution" type="text" placeholder="Insitution" style="color: #174074; width: 50%;"><br><br>
+                            <input id="collection" type="text" placeholder="Collection" style="color: #174074; width: 50%;"><br><br>
+                            <input id="instcollnum" type="text" placeholder="Institution Collection Number" style="color: #174074; width: 50%;"><br><br>
+                            <input id="inclusivedates" type="text" placeholder="Inclusive Dates" style="color: #174074; width: 50%;"><br><br>
+                            <input id="extent"" type="text" placeholder="Extent" style="color: #174074; width: 50%;"><br><br>
+                            <input id="subjectheadings" type="text" placeholder="Subject Headings" style="color: #174074; width: 50%;"><br><br>
+                            <input id="description" type="text" placeholder="Description" style="color: #174074; width: 50%;"><br><br>
+                            <input id="link" type="text" placeholder="Web Link" style="color: #174074; width: 50%;"><br><br>
+                            <textarea id="notes" type="text" placeholder="Notes" style="color: #174074; width: 50%;"></textarea><br><br>
+                            <button onclick="recordAdd()">Add Record</button><br><br>
+                        </div>
+                        <div style="width: 60%; text-align: center;">
+                            <h2>Approve an Account</h2>
+                            <div id="verifyTable"></div>
+                        </div>
                     </div>
-                    <div style="width: 60%; text-align: center;">
-                        <h2>Approve an Account</h2>
-                        <div id="verifyTable"></div>
+                    <h2>Comments on Documents</h2><br>
+                    <div id="commentTable" style="padding-left: 25px;padding-right: 25px;">
+
                     </div>
                 </div>
                 <footer id="rt-footer-surround" style="bottom: 0; left: 0; right: 0;">
